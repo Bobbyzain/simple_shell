@@ -10,7 +10,10 @@
 #include <sys/wait.h>
 
 /* PROTOTYPES */
+int execute_command(char *command);
+int main(void);
+char *read_user_input(void);
 
 /* STRUCTURES */
 
-#endif
+#endif /* MAIN_H */
