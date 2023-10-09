@@ -16,4 +16,7 @@ char *read_user_input(void);
 
 /* STRUCTURES */
 
+/* GLOBAL VARIABLES */
+#define BUFFERSIZE 1024
+
 #endif /* MAIN_H */

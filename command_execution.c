@@ -9,8 +9,16 @@
 int execute_command(char *command)
 {
 	pid_t child_pid;
-	int status;
-	char *args[];
+	int status, num = 0;
+	char *args[BUFFERSIZE], *token;
+
+	token = strtok(command, " ");
+	while (token != NULL)
+	{
+		args[num++] = token;
+		token = strtok(NULL, " ");
+	}
+	args[num] = NULL; /* null-terminate the argument list */
 
 	/* Fork a child process */
 	child_pid = fork();
@@ -22,7 +30,6 @@ int execute_command(char *command)
 
 	if (child_pid == 0) /* This is a child process */
 	{
-		args = {command, NULL};
 		execve(command, args, NULL);
 
 		/* If execve fails, print an error message */
