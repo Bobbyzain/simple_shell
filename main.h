@@ -13,6 +13,8 @@
 int execute_command(char *command);
 int main(void);
 char *read_user_input(void);
+char *_which(char *command, char *path);
+char *_getenv(const char *name);
 
 /* STRUCTURES */
 

@@ -10,8 +10,15 @@ int execute_command(char *command)
 {
 	pid_t child_pid;
 	int status, num = 0;
-	char *args[BUFFERSIZE], *token;
+	char *args[BUFFERSIZE], *token, *full_path, *path;
 
+	path = _getenv("PATH");
+	full_path = _which(command, path);
+	if (!full_path)
+	{
+		fprintf(stderr, "%s: command not found\n", command);
+		return (1);
+	}
 	token = strtok(command, " ");
 	while (token != NULL)
 	{
@@ -30,10 +37,12 @@ int execute_command(char *command)
 
 	if (child_pid == 0) /* This is a child process */
 	{
+		args = {full_path, NULL};
 		execve(command, args, NULL);
 
 		/* If execve fails, print an error message */
-		perror(command);
+		perror(full_path);
+		free(full_path);
 		exit(EXIT_FAILURE);
 	}
 	else /* This is a parent process */
