@@ -9,7 +9,6 @@
 
 char *_which(char *command, char *path)
 {
-	char **directories;
 	char *token, *path_copy, *full_path;
 	struct stat st;
 	int i = 0;
@@ -19,9 +18,11 @@ char *_which(char *command, char *path)
 	path_copy = strdup(path);
 	if (!path_copy)
 		return (NULL);
-	full_path = malloc(strlen(token) + strlen(command) + 2);
+	/* Tokenize the PATH variable */
+	token = strtok(path_copy, ":");
 	while (token)
 	{
+		full_path = malloc(strlen(token) + strlen(command) + 2);
 		if (!full_path)
 		{
 			free(path_copy);
@@ -30,7 +31,7 @@ char *_which(char *command, char *path)
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, command);
-		i = lstat(full_path, &st);
+		i = stat(full_path, &st);
 		if (i == 0 && S_ISREG(st.st_mode) && (st.st_mode & S_IXUSR))
 		{
 			free(path_copy);
