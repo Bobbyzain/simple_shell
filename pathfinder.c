@@ -26,10 +26,10 @@ char *get_loc(char *command)
 			dir_len = _strlen(path_token); /*To get the len of dir*/
 			file_path = malloc(cmd_len + dir_len + 2);
 			/* Building the new path for the command */
-			strcpy(file_path, path_token);
-			strcat(file_path, "/");
-			strcat(file_path, command);
-			strcat(file_path, "\0");
+			_strcpy(file_path, path_token);
+			_strcat(file_path, "/");
+			_strcat(file_path, command);
+			_strcat(file_path, "\0");
 			/*check to see if filepath exist, 0 for success */
 			if (stat(file_path, &buffer) == 0)
 			{
