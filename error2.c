@@ -107,17 +107,17 @@ char *err_get_cd(shell_data *shell_d)
  * @shell_d: the relevant data structure
  * @mesage: the msg to be printed
  * @error: the message outputed
- * @ver_str: to count the lines
+ * @ver_s: to count the lines
  * Return: Always a pointer
  */
 
-char *_strcat_cd(shell_data *shell_d, char *mesage, char *error, char *ver_str)
+char *_strcat_cd(shell_data *shell_d, char *mesage, char *error, char *ver_s)
 {
 	char *illegal_flg;
 
 	_strcpy(error, shell_d->av[0]);
 	_strcat(error, ": ");
-	_strcat(error, ver_str);
+	_strcat(error, ver_s);
 	_strcat(error, ": ");
 	_strcat(error, shell_d->args[0]);
 	_strcat(error, mesage);

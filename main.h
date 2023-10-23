@@ -22,7 +22,12 @@ extern char **environ;
 #define PROMPT "cisfun $ "
 
 /* STRUCTURES */
-typedef struct
+/**
+ * struct LR - struct to contain data for line resulsts
+ * @line: the line from the user
+ * @read_result: the number of chars read
+ */
+typedef struct LR
 {
 	char *line;
 	ssize_t read_result;
@@ -49,6 +54,11 @@ typedef struct my_data
 	char *pid;
 } shell_data;
 
+/**
+ * struct _builtins - struct that contains builtins
+ * @name: the builtin command name
+ * @f: the function pointer type
+ */
 typedef struct _builtins
 {
 	char *name;
@@ -121,7 +131,7 @@ char *error_path126(shell_data *shell_d);
 char *error_not_f(shell_data *shell_d);
 char *err_exit_shell(shell_data *shell_d);
 char *err_get_cd(shell_data *shell_d);
-char *_strcat_cd(shell_data *shell_d, char *mesage, char *error, char *ver_str);
+char *_strcat_cd(shell_data *shell_d, char *mesage, char *error, char *ver_s);
 char *aux_itoa(int num);
 int obt_len(int num);
 int (*get_built_in(char *command))(shell_data *);
